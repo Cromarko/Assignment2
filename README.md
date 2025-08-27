@@ -1,4 +1,4 @@
-# Assignment 2
+# Assignment 2 Efe Guven
 
 This project deploys a containerized dashboard on AWS Fargate with HTTPS-only access, Basic Auth via Nginx, automated CI/CD using GitHub Actions, and CloudWatch alerts on high CPU.
 
@@ -52,8 +52,10 @@ Key variables (see infrastructure/variables.tf), change them to your own:
 
 # Basic Auth
 httpauth/Dockerfile builds Nginx proxy with .htpasswd + nginx.conf.
-ECS task runs two containers: backend (3000) + proxy (80).
+ECS task runs two containers: backend (3000) + proxy (80/443).
 ALB targets proxy, enforcing Basic Auth.
+All traffic is redirected to HTTPS.
+Certificates come from AWS ACM (free, managed).
 
 # Monitoring
 CloudWatch alarm: CPU > 70% for 5 min.
